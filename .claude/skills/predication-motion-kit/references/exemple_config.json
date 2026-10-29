@@ -1,0 +1,37 @@
+{
+  "raw_video": "/mnt/user-data/uploads/IMG_6197_7.mov",
+  "start": 0.9, "end": 59.0,
+  "grade": "bright",
+  "framing": {"mode": "inset", "zooms": [0.80, 0.88], "top": 260},
+  "caption_y": 1560,
+  "signature": "Une vie au cœur de l'impact",
+  "scenes": [
+    {"text": "Sois un peu sérieux. Tu as semé aujourd'hui et tu veux récolter aujourd'hui."},
+    {"text": "Oui, c'est ton comportement, c'est ce que tu nous montres au quotidien."},
+    {"text": "Tu veux tout maintenant."},
+    {"text": "Il faut avoir la mentalité du cultivateur."},
+    {"text": "Il sait que ce qu'il a semé prendra le temps avant de donner les fruits."},
+    {"text": "Il faut être patient."},
+    {"text": "Le plus souvent, tu n'arrives pas à avoir ce que Dieu veut de toi. Tu n'arrives pas à recevoir ce que Dieu veut te donner parce que tu es impatient."},
+    {"text": "Et lorsque tu es impatient, tu ne vas pas voir Isaac, celui que Dieu a promis."},
+    {"text": "Il faut être patient."}
+  ],
+  "key_words": ["sérieux","semé","récolter","aujourd'hui","comportement","quotidien","maintenant","cultivateur","mentalité","temps","fruits","patient","impatient","isaac","promis"],
+  "heads": [
+    {"from": "S0", "to": "S0:Tu", "kicker": "sois un peu", "title": "SÉRIEUX"},
+    {"from": "S1", "to": "S2", "kicker": "c'est ton comportement", "title": "AU QUOTIDIEN"},
+    {"from": "S3", "to": "S4", "kicker": "il faut avoir la mentalité", "title": "DU CULTIVATEUR"},
+    {"from": "S4", "to": "S4:prendra", "kicker": "il sait que ce qu'il a", "title": "SEMÉ"},
+    {"from": "S6", "to": "S6:parce", "kicker": "le plus souvent, tu n'arrives pas à avoir", "title": "CE QUE DIEU\nVEUT DE TOI"},
+    {"from": "S7", "to": "S7:celui", "kicker": "lorsque tu es impatient", "title": "TU NE VAS PAS\nVOIR ISAAC"},
+    {"from": "S8", "to": "END", "kicker": "retiens bien", "title": "IL FAUT ÊTRE\nPATIENT"}
+  ],
+  "gfx": [
+    {"from": "S0:Tu", "to": "S1", "kind": "outline", "kicker": "tu as semé aujourd'hui et tu veux", "title": "RÉCOLTER\nAUJOURD'HUI ?"},
+    {"from": "S2", "to": "S3", "kind": "outline", "kicker": "tu veux tout", "title": "MAINTENANT"},
+    {"from": "S4:prendra", "to": "S5", "kind": "up", "kicker": "ça prend du temps avant de donner", "title": "LES FRUITS"},
+    {"from": "S5", "to": "S6", "kind": "outline", "kicker": "il faut être", "title": "PATIENT"},
+    {"from": "S6:parce", "to": "S7", "kind": "down", "kicker": "tu n'arrives pas à recevoir parce que tu es", "title": "IMPATIENT"},
+    {"from": "S7:celui", "to": "S8", "kind": "shield", "kicker": "celui que Dieu a", "title": "PROMIS"}
+  ]
+}
