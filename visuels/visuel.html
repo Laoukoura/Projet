@@ -1,0 +1,70 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--acc:#E8835F;--acc2:#FFB38A}
+body{background:#000;font-family:Inter,sans-serif;color:#fff}
+.v{position:relative;overflow:hidden;background:radial-gradient(ellipse at 20% 30%,#24140e 0%,#080505 45%,#000 75%)}
+.h{width:1920px;height:1080px}
+.p{width:1080px;height:1350px}
+.photo{position:absolute;bottom:0;background:url(photo.jpg) center top/cover no-repeat}
+.h .photo{right:0;width:900px;height:1080px;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 35%);}
+.p .photo{right:-130px;width:780px;height:1040px;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 35%),linear-gradient(to bottom,transparent 0%,#000 22%);-webkit-mask-composite:source-in;mask-composite:intersect}
+.p li{text-shadow:0 2px 12px #000}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);background:var(--acc);opacity:.35}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(circle at 30% 50%,#000,transparent 70%)}
+.txt{position:absolute;z-index:3}
+.h .txt{left:110px;top:120px;width:1000px}
+.p .txt{left:70px;top:80px;width:940px}
+.badge{display:inline-flex;align-items:center;gap:12px;border:2px solid var(--acc);color:var(--acc2);padding:10px 22px;border-radius:40px;font-weight:700;letter-spacing:3px;font-size:22px}
+.badge i{width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px var(--acc)}
+.pre{font-weight:600;font-size:34px;letter-spacing:6px;color:#cfc7c2;margin-top:44px}
+h1{font-weight:800;line-height:.95;letter-spacing:-2px;text-transform:uppercase}
+.h h1{font-size:120px;margin-top:14px}
+.p h1{font-size:104px;margin-top:14px}
+h1 span{color:var(--acc);display:block}
+.sub{display:inline-block;margin-top:30px;background:#fff;color:#000;font-weight:800;padding:12px 24px;font-size:38px;letter-spacing:1px;transform:skew(-6deg)}
+ul{list-style:none;margin-top:46px}
+li{font-size:31px;font-weight:600;margin:16px 0;display:flex;align-items:center;gap:18px;color:#eee}
+li b{flex:none;width:40px;height:40px;border-radius:10px;background:rgba(232,131,95,.18);border:1.5px solid var(--acc);color:var(--acc2);display:grid;place-items:center;font-size:22px}
+.cta{position:absolute;z-index:4;display:flex;gap:22px;align-items:center}
+.h .cta{left:110px;bottom:90px}
+.p .cta{left:70px;bottom:70px;flex-direction:column;align-items:flex-start;gap:16px}
+.btn{background:var(--acc);color:#000;font-weight:800;font-size:34px;padding:22px 40px;border-radius:14px;box-shadow:0 10px 40px rgba(232,131,95,.45)}
+.info{font-size:28px;color:#ddd;font-weight:600;line-height:1.5}
+.info em{font-style:normal;color:var(--acc2)}
+.tl{position:absolute;z-index:4;background:rgba(15,10,8,.82);border:1.5px solid rgba(255,255,255,.14);border-radius:18px;padding:18px 20px;backdrop-filter:blur(6px)}
+.h .tl{right:70px;bottom:70px;width:520px}
+.p .tl{left:70px;bottom:310px;width:430px}
+.tl .t{font-size:18px;color:#bbb;font-weight:600;letter-spacing:2px;margin-bottom:12px;display:flex;justify-content:space-between}
+.tr{height:30px;display:flex;gap:5px;margin:7px 0}
+.tr div{border-radius:6px}
+.ph{position:absolute;left:46%;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 10px #fff}
+</style></head><body>
+<!-- TEMPLATE -->
+<div id="T" style="display:none">
+ <div class="glow" style="width:600px;height:600px;right:120px;top:120px"></div>
+ <div class="grid"></div>
+ <div class="photo"></div>
+ <div class="txt">
+  <div class="badge"><i></i>FORMATION · PROCHAINE SESSION</div>
+  <div class="pre">MAÎTRISE LE</div>
+  <h1>Montage vidéo<span>avec Claude AI</span></h1>
+  <div class="sub">DE A À Z — 100 % SUR TÉLÉPHONE</div>
+  <ul>
+   <li><b>1</b>Écrire tes scripts et idées avec l'IA</li>
+   <li><b>2</b>Monter, sous-titrer et animer sur mobile</li>
+   <li><b>3</b>Publier des vidéos qui captent l'attention</li>
+  </ul>
+ </div>
+ <div class="tl"><div class="t"><span>TIMELINE</span><span>00:42</span></div>
+  <div style="position:relative">
+   <div class="tr"><div style="width:22%;background:#E8835F"></div><div style="width:34%;background:#c4613f"></div><div style="width:40%;background:#E8835F"></div></div>
+   <div class="tr"><div style="width:14%;background:transparent"></div><div style="width:30%;background:#6d8cff"></div><div style="width:20%;background:#8fa6ff"></div></div>
+   <div class="tr" style="height:22px"><div style="width:100%;background:repeating-linear-gradient(90deg,#3fbf8f 0 3px,#1f6b50 3px 6px)"></div></div>
+   <div class="ph"></div>
+  </div></div>
+ <div class="cta"><div class="btn">RÉSERVE TA PLACE</div>
+  <div class="info">📅 <em>[Date]</em> · 📍 <em>[Lieu / En ligne]</em><br>📞 WhatsApp : <em>[Votre numéro]</em></div></div>
+</div>
+<div class="v h" id="H"></div><div style="height:40px"></div><div class="v p" id="P"></div>
+<script>H.innerHTML=T.innerHTML;P.innerHTML=T.innerHTML</script>
+</body></html>
