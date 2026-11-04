@@ -1,0 +1,201 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;font-family:Inter,sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden}
+.bg{position:absolute;inset:0;overflow:hidden;opacity:0}
+.bg img{position:absolute;top:0;height:1920px;will-change:transform}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.1) 25%,rgba(0,0,0,.15) 45%,rgba(0,0,0,.85) 72%,rgba(0,0,0,.9) 100%)}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.65) 100%);pointer-events:none}
+#leak{position:absolute;inset:-20%;mix-blend-mode:screen;pointer-events:none}
+#grain{position:absolute;inset:0;background:url(img/grain.png);opacity:.07;mix-blend-mode:overlay}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+.a{position:absolute;opacity:0;will-change:transform,opacity,filter}
+.ttl{left:0;right:0;text-align:center;font-weight:800;text-transform:uppercase;letter-spacing:-2px;line-height:.95;text-shadow:0 8px 40px rgba(0,0,0,.6)}
+.pre{left:0;right:0;text-align:center;font-weight:700;letter-spacing:10px;font-size:34px;color:#f3d9cc;text-shadow:0 4px 20px #000}
+.w{display:inline-block;will-change:transform,opacity,filter}
+.or{color:#F0875F}
+.tag{display:inline-block;background:#FFC83D;color:#111;padding:14px 30px;border-radius:14px;transform:skew(-6deg)}
+.sub{left:60px;right:60px;top:1470px;text-align:center;font-weight:800;font-size:54px;line-height:1.15;text-shadow:0 4px 0 #000,0 0 30px rgba(0,0,0,.9)}
+.sub .k{color:#FFC83D}
+.chip{display:inline-flex;align-items:center;gap:12px;background:rgba(15,10,8,.78);border:2px solid rgba(240,135,95,.8);border-radius:60px;padding:16px 30px;font-weight:700;font-size:36px;backdrop-filter:blur(8px)}
+/* phone */
+.phone{width:540px;height:960px;border-radius:70px;background:#0c0c0e;border:4px solid #3a3a40;box-shadow:0 40px 120px rgba(0,0,0,.8),0 0 0 14px #141417,0 0 80px rgba(240,135,95,.35);overflow:hidden}
+.phone .notch{position:absolute;top:18px;left:50%;width:150px;height:38px;margin-left:-75px;background:#000;border-radius:20px;z-index:5}
+.scr{position:absolute;inset:0;padding:80px 26px 26px}
+.chathead{display:flex;align-items:center;gap:14px;font-weight:800;font-size:30px;padding-bottom:20px;border-bottom:1px solid #2a2a2e;margin-bottom:22px}
+.dot{width:44px;height:44px;border-radius:12px;background:#F0875F;display:grid;place-items:center;color:#000;font-size:26px}
+.bub{position:absolute;font-size:25px;line-height:1.35;border-radius:24px;padding:18px 22px;opacity:0}
+.me{right:26px;width:390px;background:#F0875F;color:#1a0f0a;font-weight:600;border-bottom-right-radius:6px}
+.ai{left:26px;width:440px;background:#1e1e23;color:#eee;border-bottom-left-radius:6px}
+.ai b{color:#FFC83D}
+.typing span{display:inline-block;width:12px;height:12px;margin:0 4px;border-radius:50%;background:#aaa}
+/* editor */
+.prev{position:absolute;left:26px;right:26px;top:80px;height:430px;border-radius:22px;overflow:hidden;background:#000}
+.prev img{position:absolute;height:430px;left:-170px}
+.prev .cap{position:absolute;bottom:40px;left:0;right:0;text-align:center;font-weight:800;font-size:30px;text-shadow:0 3px 0 #000}
+.tools{position:absolute;top:530px;left:26px;right:26px;display:flex;justify-content:space-between}
+.tool{width:92px;height:84px;border-radius:18px;background:#1c1c21;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:30px;gap:4px}
+.tool small{font-size:15px;color:#bbb;font-weight:600}
+.tracks{position:absolute;top:640px;left:0;right:0;height:300px}
+.trk{position:absolute;left:26px;height:62px;display:flex;gap:6px}
+.clip{height:100%;border-radius:10px;background-size:cover;background-position:center;border:2px solid rgba(255,255,255,.25)}
+.ph{position:absolute;top:0;width:4px;height:300px;background:#fff;box-shadow:0 0 14px #fff;border-radius:2px}
+.wave{position:absolute;left:26px;right:26px;top:230px;height:56px;display:flex;align-items:center;gap:3px}
+.wave i{flex:1;background:#3fd39a;border-radius:2px}
+/* cta */
+.btn{display:inline-block;background:#F0875F;color:#140b07;font-weight:800;font-size:56px;padding:34px 70px;border-radius:28px;box-shadow:0 20px 70px rgba(240,135,95,.6)}
+.info{font-size:40px;font-weight:600;line-height:1.7;color:#eee}
+.info em{font-style:normal;color:#FFC83D}
+</style></head><body><div id="stage">
+<div class="bg" id="b1"><img src="img/s4.jpg"><div class="shade"></div></div>
+<div class="bg" id="b2"><img src="img/s2.jpg"><div class="shade"></div></div>
+<div class="bg" id="b3"><img src="img/s3.jpg"><div class="shade"></div></div>
+<div class="bg" id="b4"><img src="img/s2.jpg" style="filter:blur(14px) brightness(.45)"><div class="shade"></div></div>
+<div class="bg" id="b5"><img src="img/s4.jpg"><div class="shade" style="background:linear-gradient(180deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.4) 32%,rgba(0,0,0,.1) 55%,rgba(0,0,0,.8) 100%)"></div></div>
+<div class="bg" id="b6"><img src="img/s3.jpg"><div class="shade"></div></div>
+<div class="bg" id="b7"><img src="img/s3.jpg" style="filter:blur(18px) brightness(.35)"><div class="shade"></div></div>
+<div id="leak"></div>
+
+<!-- S1 -->
+<div class="a pre" data-in="0.4" data-out="4.0" style="top:250px">FORMATION 2026</div>
+<div class="a ttl" data-in="0.7" data-out="4.0" data-split style="top:320px;font-size:118px">Ton téléphone</div>
+<div class="a ttl" data-in="1.9" data-out="4.0" data-split style="top:440px;font-size:118px"><span class="or">= ton studio</span></div>
+<!-- S2 -->
+<div class="a pre" data-in="4.5" data-out="8.8" style="top:1060px">DE A À Z</div>
+<div class="a ttl" data-in="4.7" data-out="8.8" data-pop style="top:1120px;font-size:76px;white-space:nowrap"><span class="tag">100 % sur téléphone</span></div>
+<div class="a" data-in="6.6" data-out="8.8" data-pop style="left:0;right:0;top:1270px;text-align:center"><span class="chip">🚫💻 &nbsp;Aucun ordinateur requis</span></div>
+<!-- S3 -->
+<div class="a pre" data-in="9.2" data-out="14.8" style="top:1180px">PROPULSÉ PAR</div>
+<div class="a ttl or" data-in="9.35" data-out="14.8" data-split style="top:1240px;font-size:150px">Claude AI</div>
+<div class="a" id="ph1" data-in="9.6" data-out="14.8" data-phone data-sc=".8" style="left:520px;top:170px">
+ <div class="phone" style="position:relative"><div class="notch"></div><div class="scr">
+  <div class="chathead"><div class="dot">✱</div>Claude<span style="margin-left:auto;font-size:20px;color:#3fd39a">● en ligne</span></div>
+  <div class="bub me" id="c1" style="top:200px">Écris-moi un script TikTok de 30 s pour présenter ma boutique 🛍️</div>
+  <div class="bub ai typing" id="c2" style="top:380px"><span></span><span></span><span></span></div>
+  <div class="bub ai" id="c3" style="top:380px"><b>🎬 Accroche :</b> « Tu cherches LE cadeau parfait ? »<br><b>Scène 1 :</b> plan large de la boutique<br><b>Scène 2 :</b> gros plan produits<br><b>Fin :</b> « Passe nous voir ! »</div>
+  <div class="bub" id="c4" style="top:720px;left:26px;background:#123d2c;color:#3fd39a;font-weight:800;font-size:28px">✓ Script prêt en 10 secondes</div>
+ </div></div></div>
+<!-- S4 -->
+<div class="a pre" data-in="15.2" data-out="21.8" style="top:200px">COUPE · SOUS-TITRE · ANIME</div>
+<div class="a ttl" data-in="15.35" data-out="21.8" data-split style="top:265px;font-size:124px">Montage <span class="or">vidéo</span></div>
+<div class="a" id="ph2" data-in="15.6" data-out="21.8" data-phone style="left:270px;top:430px">
+ <div class="phone" style="position:relative"><div class="notch"></div>
+  <div class="prev"><img src="img/s2.jpg" id="pimg"><div class="cap" id="pcap">MAÎTRISE LE MONTAGE</div></div>
+  <div class="tools"><div class="tool" id="t1">✂️<small>Couper</small></div><div class="tool" id="t2">💬<small>Texte</small></div><div class="tool" id="t3">✨<small>Effets</small></div><div class="tool" id="t4">🎵<small>Audio</small></div></div>
+  <div class="tracks"><div id="tw" style="position:absolute;inset:0">
+   <div class="trk" style="top:10px"><div class="clip" style="width:150px;background-image:url(img/s4.jpg)"></div><div class="clip" style="width:190px;background-image:url(img/s2.jpg)"></div><div class="clip" style="width:170px;background-image:url(img/s3.jpg)"></div><div class="clip" style="width:150px;background-image:url(img/s4.jpg)"></div></div>
+   <div class="trk" style="top:86px"><div style="width:90px"></div><div class="clip" id="tx1" style="width:180px;background:#6d7cff;border:0;font-size:18px;font-weight:700;padding:18px 10px">T Titre</div><div class="clip" id="tx2" style="width:200px;background:#b26dff;border:0;font-size:18px;font-weight:700;padding:18px 10px">T Sous-titres</div></div>
+   <div class="trk" style="top:162px"><div style="width:40px"></div><div class="clip" style="width:420px;background:#ffb13d;border:0;font-size:18px;font-weight:700;padding:18px 10px;color:#222">✨ Transition · Zoom</div></div>
+   <div class="wave" id="wave"></div>
+  </div><div class="ph" id="phd" style="left:300px"></div></div>
+ </div></div>
+<div class="a" data-in="19.3" data-out="21.8" data-pop style="left:0;right:0;top:1350px;text-align:center"><span class="chip" style="border-color:#3fd39a">⬆️ Export Full HD · 1080p</span></div>
+<!-- S5 -->
+<div class="a pre" data-in="22.3" data-out="28.8" style="top:230px">UNE FORMATION</div>
+<div class="a ttl" data-in="22.5" data-out="28.8" data-split style="top:300px;font-size:124px">100 % <span class="or">pratique</span></div>
+<div class="a" data-in="24.2" data-out="28.8" data-pop style="left:90px;top:1080px"><span class="chip">🎥 Créateurs</span></div>
+<div class="a" data-in="24.6" data-out="28.8" data-pop style="left:500px;top:1180px"><span class="chip">💼 Entrepreneurs</span></div>
+<div class="a" data-in="25.0" data-out="28.8" data-pop style="left:170px;top:1280px"><span class="chip">🚀 Jeunes ambitieux</span></div>
+<!-- S6 -->
+<div class="a pre" data-in="29.3" data-out="34.8" style="top:1010px">REJOINS LA</div>
+<div class="a ttl" data-in="29.45" data-out="34.8" data-split style="top:1070px;font-size:116px">Prochaine <span class="or">session</span></div>
+<div class="a" data-in="31.0" data-out="34.8" data-pop style="left:0;right:0;top:1310px;text-align:center"><span class="chip" style="background:#c62f2f;border-color:#ff6b6b">🔥 Places limitées</span></div>
+<!-- CTA -->
+<div class="a pre" data-in="35.4" data-out="99" style="top:300px">MAÎTRISE LE MONTAGE VIDÉO</div>
+<div class="a ttl" data-in="35.6" data-out="99" data-split style="top:370px;font-size:112px;white-space:nowrap">avec <span class="or">Claude AI</span></div>
+<div class="a" data-in="36.2" data-out="99" data-pop style="left:0;right:0;top:640px;text-align:center"><span class="tag" style="font-weight:800;font-size:50px;white-space:nowrap">DE A À Z — 100 % SUR TÉLÉPHONE</span></div>
+<div class="a" id="cbtn" data-in="37.0" data-out="99" data-pop style="left:0;right:0;top:880px;text-align:center"><span class="btn">RÉSERVE TA PLACE</span></div>
+<div class="a info" data-in="37.8" data-out="99" style="left:0;right:0;top:1130px;text-align:center">📅 <em>[Date]</em> &nbsp;·&nbsp; 📍 <em>[Lieu / En ligne]</em><br>📲 WhatsApp : <em>[Votre numéro]</em></div>
+<div class="a" data-in="38.6" data-out="99" style="left:0;right:0;top:1400px;text-align:center;font-size:34px;font-weight:700;color:#f3d9cc;letter-spacing:4px">👉 ÉCRIS « FORMATION » EN MESSAGE</div>
+
+<div class="a sub" id="sub"></div>
+<div id="vig"></div><div id="grain"></div><div id="flash"></div>
+</div>
+<script>
+const W=1920*1672/941; // displayed image width
+// scenes: start,end, focus x frac, screen x target, scale from->to, drift px
+const S=[
+ ['b1',0,4.2,.42,540,1.0,1.18,0,-60],
+ ['b2',4.2,9.0,.37,560,1.12,1.0,40,-40],
+ ['b3',9.0,15.0,.48,300,1.05,1.15,0,30],
+ ['b4',15.0,22.0,.37,540,1.1,1.1,0,0],
+ ['b5',22.0,29.0,.5,540,1.0,1.0,520,-520],
+ ['b6',29.0,35.0,.5,540,1.0,1.35,0,0],
+ ['b7',35.0,99,.5,540,1.1,1.0,0,0]];
+const cuts=S.slice(1).map(s=>s[1]);
+const SUBS=[[0.3,2.2,'Et si ton téléphone'],[2.2,4.1,'devenait un <span class=k>vrai studio</span> ?'],
+[4.4,6.6,'Crée des vidéos pros de A à Z…'],[6.6,8.9,'…<span class=k>sans ordinateur.</span>'],
+[9.2,11.2,'Avec <span class=k>Claude AI</span>, écris tes scripts,'],[11.2,13.2,'structure tes idées,'],[13.2,14.9,'et prépare ton montage.'],
+[15.2,17.4,'Puis coupe, sous-titre,'],[17.4,19.6,'anime et exporte…'],[19.6,21.9,'directement sur <span class=k>ton smartphone.</span>'],
+[22.2,24.6,'Une formation pratique, pas à pas,'],[24.6,26.8,'pour les créateurs et les entrepreneurs'],[26.8,28.9,'qui veulent passer au <span class=k>niveau supérieur.</span>'],
+[29.2,31.8,'Rejoins la prochaine session'],[31.8,34.8,'et transforme ton téléphone en <span class=k>machine à contenus.</span>'],
+[35.3,37.6,'Réserve ta place <span class=k>maintenant !</span>']];
+const cl=(x)=>Math.max(0,Math.min(1,x)), eo=x=>1-Math.pow(1-cl(x),3), eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2},
+ back=x=>{x=cl(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+// split words
+document.querySelectorAll('[data-split]').forEach(el=>{
+ const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType==3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p))f.appendChild(document.createTextNode(p));else{const s=document.createElement('span');s.className='w';s.textContent=p;f.appendChild(s)}});c.replaceWith(f)}else walk(c)})};walk(el)});
+const wave=document.getElementById('wave');for(let i=0;i<60;i++)wave.appendChild(document.createElement('i'));
+const A=[...document.querySelectorAll('.a[data-in]')];
+let lastSub=-1;const sub=document.getElementById('sub');
+window.render=function(t){
+ // backgrounds
+ S.forEach(([id,a,b,fx,tx,s0,s1,d0,d1],i)=>{
+  const el=document.getElementById(id),img=el.firstElementChild;
+  const fi=i==0?cl(t/0.5):cl((t-a)/0.35), fo=t>b+0.35?0:1;
+  el.style.opacity=(t>=a-0.01&&t<b+0.35)?fi*fo:0;
+  if(el.style.opacity==0)return;
+  const p=eio((t-a)/(b-a)); const punch=1+0.07*(1-eo((t-a)/0.6));
+  const s=(s0+(s1-s0)*p)*punch, dx=d0+(d1-d0)*p;
+  img.style.left=(tx-fx*W)+'px';img.style.transformOrigin=(fx*W)+'px 45%';
+  img.style.transform=`translateX(${dx}px) scale(${s})`;
+ });
+ // flash on cuts
+ let f=0;cuts.forEach(c=>{const d=t-c;if(d>=-0.05&&d<0.35)f=Math.max(f,d<0?(d+0.05)/0.05*.6:.6*(1-d/0.35))});
+ document.getElementById('flash').style.opacity=f;
+ // light leak
+ const lx=50+30*Math.sin(t*0.4),ly=30+20*Math.cos(t*0.33);
+ document.getElementById('leak').style.background=`radial-gradient(circle at ${lx}% ${ly}%,rgba(240,135,95,.22),transparent 40%),radial-gradient(circle at ${100-lx}% ${80-ly/2}%,rgba(80,120,255,.15),transparent 45%)`;
+ document.getElementById('grain').style.backgroundPosition=`${(t*977)%512|0}px ${(t*631)%512|0}px`;
+ // animated elements
+ A.forEach(el=>{
+  const ti=+el.dataset.in,to=+el.dataset.out;
+  const pin=(t-ti)/0.5, pout=(t-to)/0.3;
+  if(t<ti||t>to+0.3){el.style.opacity=0;return}
+  const o=1-eo(pout);
+  if(el.hasAttribute('data-split')){
+   el.style.opacity=o;el.style.transform=`translateY(${-60*eo(pout)}px)`;
+   [...el.querySelectorAll('.w')].forEach((w,k)=>{const q=(t-ti-k*0.12)/0.45;w.style.opacity=cl(q*1.5);w.style.transform=`translateY(${70*(1-eo(q))}px) scale(${0.85+0.15*back(q)})`;w.style.filter=`blur(${12*(1-eo(q))}px)`});
+  }else if(el.hasAttribute('data-pop')){
+   el.style.opacity=cl(pin*2)*o;el.style.transform=`scale(${0.5+0.5*back(pin)}) translateY(${-40*eo(pout)}px)`;
+  }else if(el.hasAttribute('data-phone')){
+   const q=(t-ti)/0.8;el.style.opacity=cl(q*2)*o;
+   el.style.transform=`perspective(1600px) translateY(${500*(1-eo(q))+12*Math.sin(t*1.6)}px) rotateY(${-14+10*eo(q)+3*Math.sin(t*.8)}deg) rotateX(${6*(1-eo(q))}deg) scale(${.96+.02*Math.sin(t)})`;
+   el.style.transform+=` translateY(${300*eo(pout)}px) scale(${el.dataset.sc||1})`;el.style.transformOrigin='50% 0';
+  }else{
+   el.style.opacity=cl(pin*1.6)*o;el.style.transform=`translateY(${30*(1-eo(pin))}px)`;el.style.letterSpacing='';el.style.filter=`blur(${8*(1-eo(pin))}px)`;
+  }
+ });
+ // chat
+ const ap=(id,t0,t1=99)=>{const e=document.getElementById(id),q=(t-t0)/0.4;e.style.opacity=t<t0||t>t1?0:cl(q*2);e.style.transform=`translateY(${30*(1-eo(q))}px) scale(${.9+.1*back(q)})`};
+ ap('c1',10.1);ap('c2',10.9,11.9);ap('c3',11.9);ap('c4',13.3);
+ document.querySelectorAll('#c2 span').forEach((s,k)=>s.style.transform=`translateY(${-8*Math.max(0,Math.sin(t*9-k*.9))}px)`);
+ // editor
+ const e0=15.6,ph=document.getElementById('phd');
+ ph.style.left=(40+eio((t-e0-0.6)/5.6)*460)+'px';
+ document.getElementById('pimg').style.transform=`scale(${1.1+0.15*cl((t-e0)/6)}) translateX(${-30*Math.sin(t*.5)}px)`;
+ const caps=['MAÎTRISE LE MONTAGE','✂️ COUPE PRÉCISE','💬 SOUS-TITRES AUTO','✨ EFFETS & ZOOMS'];const ci=Math.min(3,Math.max(0,Math.floor((t-e0-0.4)/1.4)));
+ document.getElementById('pcap').textContent=caps[ci];
+ ['t1','t2','t3','t4'].forEach((id,k)=>{const on=ci==k&&t>e0+0.4;document.getElementById(id).style.background=on?'#F0875F':'#1c1c21';document.getElementById(id).style.transform=`scale(${on?1.08:1})`});
+ [...wave.children].forEach((b,k)=>b.style.height=(10+40*Math.abs(Math.sin(k*.7+t*6)*Math.cos(k*.23+t*2.3)))+'px');
+ document.getElementById('tw').style.transform=`translateX(${-30*eio((t-e0)/6)}px)`;
+ // cta button pulse
+ if(t>37.5)document.querySelector('#cbtn .btn').style.transform=`scale(${1+0.045*Math.max(0,Math.sin((t-37.5)*5))})`;
+ // subtitles
+ let si=SUBS.findIndex(s=>t>=s[0]&&t<s[1]);
+ if(si!=lastSub){sub.innerHTML=si<0?'':SUBS[si][2].split(/ (?![^<]*>)/).map(w=>`<span class=w>${w}</span>`).join(' ');lastSub=si}
+ if(si<0){sub.style.opacity=0}else{sub.style.opacity=1;const s0=SUBS[si][0];
+  [...sub.querySelectorAll('.w')].forEach((w,k)=>{const q=(t-s0-k*0.09)/0.22;w.style.opacity=cl(q*2);w.style.transform=`translateY(${20*(1-eo(q))}px) scale(${.8+.2*back(q)})`})}
+};
+window.render(0);
+</script></body></html>
